@@ -13,7 +13,19 @@ import Modal from "../../containers/Modal";
 import { useData } from "../../contexts/DataContext";
 
 const Page = () => {
-  const {last} = useData()
+  
+  const { data } = useData()
+
+  // Vérifier que data et events sont définies avant de trier.
+  const byDateDesc = data?.events?.length
+    ? data.events.sort((evtA, evtB) =>
+        new Date(evtA.date) < new Date(evtB.date) ? -1 : 1
+      )
+    : [];
+
+  // Vérifier que byDateDesc n'est pas vide avant de sélectionner le dernier élément.
+  const last = byDateDesc.length > 0 ? byDateDesc[byDateDesc.length - 1] : null;
+
   return <>
     <header>
       <Menu />
