@@ -18,7 +18,7 @@ const Page = () => {
 
   // Vérifier que data et events sont définies avant de trier.
   const byDateDesc = data?.events?.length
-    ? data.events.sort((evtA, evtB) =>
+    ? data.events.toSorted((evtA, evtB) =>
         new Date(evtA.date) < new Date(evtB.date) ? -1 : 1
       )
     : [];

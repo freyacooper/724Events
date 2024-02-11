@@ -13,10 +13,13 @@ const EventList = () => {
   const { data, error } = useData();
   const [type, setType] = useState();
   const [currentPage, setCurrentPage] = useState(1);
+
+  const eventsByType = data?.events.filter((event) => event.type === type);
+  
   const filteredEvents = (
     (!type
       ? data?.events
-      : data?.events) || []
+      : eventsByType) || []
   ).filter((event, index) => {
     if (
       (currentPage - 1) * PER_PAGE <= index &&
